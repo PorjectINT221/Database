@@ -21,9 +21,9 @@ USE `SmartStock` ;
 DROP TABLE IF EXISTS `SmartStock`.`BRANDS` ;
 
 CREATE TABLE IF NOT EXISTS `SmartStock`.`BRANDS` (
-  `brand_code` INT NOT NULL AUTO_INCREMENT,
-  `brand_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`brand_code`))
+  `brandCode` INT NOT NULL AUTO_INCREMENT,
+  `brandName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`brandCode`))
 ENGINE = InnoDB;
 
 
@@ -33,18 +33,18 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SmartStock`.`PRODUCTS` ;
 
 CREATE TABLE IF NOT EXISTS `SmartStock`.`PRODUCTS` (
-  `prod_code` INT NOT NULL AUTO_INCREMENT,
-  `prod_name` VARCHAR(50) NOT NULL,
-  `prod_price` DECIMAL(8,2) NOT NULL,
-  `prod_image` MEDIUMBLOB NOT NULL,
-  `prod_description` VARCHAR(300) NOT NULL,
-  `prod_date_manufacturer` DATE NOT NULL,
-  `fk_brand_code` INT NOT NULL,
-  PRIMARY KEY (`prod_code`, `fk_brand_code`),
-  INDEX `fk_PRODUCTS_Brand1_idx` (`fk_brand_code` ASC) VISIBLE,
+  `prodCode` INT NOT NULL AUTO_INCREMENT,
+  `prodName` VARCHAR(50) NOT NULL,
+  `prodPrice` DECIMAL(8,2) NOT NULL,
+  `prodImage` MEDIUMBLOB NOT NULL,
+  `prodDescription` VARCHAR(300) NOT NULL,
+  `prodDateManufacturer` DATE NOT NULL,
+  `fkBrandCode` INT NOT NULL,
+  PRIMARY KEY (`prodCode`, `fkBrandCode`),
+  INDEX `fk_PRODUCTS_Brand1_idx` (`fkBrandCode` ASC) VISIBLE,
   CONSTRAINT `fk_PRODUCTS_Brand1`
-    FOREIGN KEY (`fk_brand_code`)
-    REFERENCES `SmartStock`.`BRANDS` (`brand_code`)
+    FOREIGN KEY (`fkBrandCode`)
+    REFERENCES `SmartStock`.`BRANDS` (`brandCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -56,32 +56,32 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SmartStock`.`COLORS` ;
 
 CREATE TABLE IF NOT EXISTS `SmartStock`.`COLORS` (
-  `col_code` INT NOT NULL AUTO_INCREMENT,
-  `col_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`col_code`))
+  `colCode` INT NOT NULL AUTO_INCREMENT,
+  `colName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`colCode`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SmartStock`.`PRODUCTS_has_COLOR`
+-- Table `SmartStock`.`ProductHasColors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `SmartStock`.`PRODUCTS_has_COLOR` ;
+DROP TABLE IF EXISTS `SmartStock`.`ProductHasColors` ;
 
-CREATE TABLE IF NOT EXISTS `SmartStock`.`PRODUCTS_has_COLOR` (
-  `prod_has_color_code` INT NOT NULL AUTO_INCREMENT,
-  `PRODUCTS_prod_code` INT NOT NULL,
-  `COLOR_col_code` INT NOT NULL,
-  INDEX `fk_PRODUCTS_has_COLOR_COLOR1_idx` (`COLOR_col_code` ASC) VISIBLE,
-  INDEX `fk_PRODUCTS_has_COLOR_PRODUCTS1_idx` (`PRODUCTS_prod_code` ASC) VISIBLE,
-  PRIMARY KEY (`prod_has_color_code`),
+CREATE TABLE IF NOT EXISTS `SmartStock`.`ProductHasColors` (
+  `prodHasColorCode` INT NOT NULL AUTO_INCREMENT,
+  `productProdCode` INT NOT NULL,
+  `colorColCode` INT NOT NULL,
+  INDEX `fk_PRODUCTS_has_COLOR_COLOR1_idx` (`colorColCode` ASC) VISIBLE,
+  INDEX `fk_PRODUCTS_has_COLOR_PRODUCTS1_idx` (`productProdCode` ASC) VISIBLE,
+  PRIMARY KEY (`prodHasColorCode`),
   CONSTRAINT `fk_PRODUCTS_has_COLOR_PRODUCTS1`
-    FOREIGN KEY (`PRODUCTS_prod_code`)
-    REFERENCES `SmartStock`.`PRODUCTS` (`prod_code`)
+    FOREIGN KEY (`productProdCode`)
+    REFERENCES `SmartStock`.`PRODUCTS` (`prodCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUCTS_has_COLOR_COLOR1`
-    FOREIGN KEY (`COLOR_col_code`)
-    REFERENCES `SmartStock`.`COLORS` (`col_code`)
+    FOREIGN KEY (`colorColCode`)
+    REFERENCES `SmartStock`.`COLORS` (`colCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
