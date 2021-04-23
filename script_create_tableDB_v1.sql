@@ -16,11 +16,11 @@ CREATE SCHEMA IF NOT EXISTS `SmartStock` DEFAULT CHARACTER SET utf8 COLLATE utf8
 USE `SmartStock` ;
 
 -- -----------------------------------------------------
--- Table `SmartStock`.`BRANDS`
+-- Table `SmartStock`.`brands`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `SmartStock`.`BRANDS` ;
+DROP TABLE IF EXISTS `SmartStock`.`brands` ;
 
-CREATE TABLE IF NOT EXISTS `SmartStock`.`BRANDS` (
+CREATE TABLE IF NOT EXISTS `SmartStock`.`brands` (
   `brandCode` INT NOT NULL AUTO_INCREMENT,
   `brandName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`brandCode`))
@@ -28,11 +28,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SmartStock`.`PRODUCTS`
+-- Table `SmartStock`.`products`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `SmartStock`.`PRODUCTS` ;
+DROP TABLE IF EXISTS `SmartStock`.`products` ;
 
-CREATE TABLE IF NOT EXISTS `SmartStock`.`PRODUCTS` (
+CREATE TABLE IF NOT EXISTS `SmartStock`.`products` (
   `prodCode` INT NOT NULL AUTO_INCREMENT,
   `prodName` VARCHAR(50) NOT NULL,
   `prodPrice` DECIMAL(8,2) NOT NULL,
@@ -44,18 +44,18 @@ CREATE TABLE IF NOT EXISTS `SmartStock`.`PRODUCTS` (
   INDEX `fk_PRODUCTS_Brand1_idx` (`fkBrandCode` ASC) VISIBLE,
   CONSTRAINT `fk_PRODUCTS_Brand1`
     FOREIGN KEY (`fkBrandCode`)
-    REFERENCES `SmartStock`.`BRANDS` (`brandCode`)
+    REFERENCES `SmartStock`.`brands` (`brandCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SmartStock`.`COLORS`
+-- Table `SmartStock`.`colors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `SmartStock`.`COLORS` ;
+DROP TABLE IF EXISTS `SmartStock`.`colors` ;
 
-CREATE TABLE IF NOT EXISTS `SmartStock`.`COLORS` (
+CREATE TABLE IF NOT EXISTS `SmartStock`.`colors` (
   `colCode` INT NOT NULL AUTO_INCREMENT,
   `colName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`colCode`))
@@ -63,11 +63,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SmartStock`.`ProductHasColors`
+-- Table `SmartStock`.`producthascolors`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `SmartStock`.`ProductHasColors` ;
+DROP TABLE IF EXISTS `SmartStock`.`producthascolors` ;
 
-CREATE TABLE IF NOT EXISTS `SmartStock`.`ProductHasColors` (
+CREATE TABLE IF NOT EXISTS `SmartStock`.`producthascolors` (
   `prodHasColorCode` INT NOT NULL AUTO_INCREMENT,
   `productProdCode` INT NOT NULL,
   `colorColCode` INT NOT NULL,
@@ -76,12 +76,12 @@ CREATE TABLE IF NOT EXISTS `SmartStock`.`ProductHasColors` (
   PRIMARY KEY (`prodHasColorCode`),
   CONSTRAINT `fk_PRODUCTS_has_COLOR_PRODUCTS1`
     FOREIGN KEY (`productProdCode`)
-    REFERENCES `SmartStock`.`PRODUCTS` (`prodCode`)
+    REFERENCES `SmartStock`.`products` (`prodCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUCTS_has_COLOR_COLOR1`
     FOREIGN KEY (`colorColCode`)
-    REFERENCES `SmartStock`.`COLORS` (`colCode`)
+    REFERENCES `SmartStock`.`colors` (`colCode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
