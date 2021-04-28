@@ -1,7 +1,7 @@
 use SmartStock;
-select * from colors;
-select * from brands;
-select * from products;
+-- select * from colors;
+-- select * from brands;
+-- select * from products;
  
 INSERT INTO brands (brandName)
 VALUES ('Apple'),('Xiaomi'),('Samsung'),('Oppo'),('Google') ;
@@ -81,11 +81,10 @@ INSERT INTO producthascolors (prodHasColorCode,prodCode,colCode)
 VALUES (1,1,1),(2,2,7),(3,3,8),(4,4,2),(5,5,1),(6,6,3),(7,7,4),(8,8,5) ;
 
 
-commit;
-rollback;
+ 
 
-select * from products;
--- select * from brands,products,colors,producthascolors where  prodCode like 1; 
+-- select * from products;
+ 
 
-select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode   ;
+-- select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode   ;
 
