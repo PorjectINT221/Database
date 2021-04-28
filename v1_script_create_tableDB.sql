@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `SmartStock`.`products` (
   `fkBrandCode` INT NOT NULL,
   PRIMARY KEY (`prodCode`),
   INDEX `fk_BrandCode_idx` (`fkBrandCode` ASC) VISIBLE,
-  CONSTRAINT `fk_BrandCode`
+  CONSTRAINT `fkBrandCode`
     FOREIGN KEY (`fkBrandCode`)
     REFERENCES `SmartStock`.`brands` (`brandCode`)
     ON DELETE NO ACTION
