@@ -1,11 +1,18 @@
-use SmartStock;
--- select * from colors;
--- select * from brands;
--- select * from products;
+use SmartWebStore;
+--select * from colors;
+--select * from brands;
+--select * from products;
  
 INSERT INTO brands (brandName)
-VALUES ('Apple'),('Xiaomi'),('Samsung'),('Oppo'),('Google') ;
-
+VALUES ('Apple');
+INSERT INTO brands (brandName)
+VALUES ('Xiaomi');
+INSERT INTO brands (brandName)
+VALUES ('Samsung');
+INSERT INTO brands (brandName)
+VALUES ('Oppo');
+INSERT INTO brands (brandName)
+VALUES ('Google');
 
 INSERT INTO products (prodName,prodPrice,prodDescription,prodDateManufacturer,prodWarranty ,image,fkBrandCode) 
 			   VALUES ('Iphone 12',29900,'NETWORK : GSM / CDMA / HSPA / EVDO / LTE / 5G
@@ -15,7 +22,7 @@ Chipset	: Apple A14 Bionic (5 nm)
 CPU		: Hexa-core (2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)
 GPU		: Apple GPU (4-core graphics)
 RAM		: 4GB
-ROM		: 64GB','2020-10-13','2 years','img',1)
+ROM		: 64GB','2020-10-13','2 years','img',1) 
 					 ,('Iphone 12 Pro',27990,'NETWORK : GSM / CDMA / HSPA / EVDO / LTE / 5G
 DISPLAY : 6.1 inches Super Retina XDR OLED, HDR10, Dolby Vision, 800 nits (typ), 1200 nits (peak)
 OS      : iOS 14.1, upgradable to iOS 14.5
@@ -77,14 +84,14 @@ ROM		: 64GB','2018-10-09','3 years','img',5);
 INSERT INTO colors (colName)
 VALUES ('Green'),('Gold'),('Orange'),('Red'),('Gray'),('Blue'),('Purple'),('Black'),('White') ;
 
-INSERT INTO producthascolors (prodHasColorCode,prodCode,colCode)
-VALUES (1,1,1),(2,2,7),(3,3,8),(4,4,2),(5,5,1),(6,6,3),(7,7,4),(8,8,5) ;
+INSERT INTO producthascolors (prodCode,colCode)
+VALUES (1,1),(2,7),(3,8),(4,2),(5,1),(6,3),(7,4),(8,5);
 
 
  
 
--- select * from products;
- 
+--select * from products;
+-- select * from brands,products,colors,producthascolors where  prodCode like 1; 
 
--- select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode   ;
+--select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode;
 
