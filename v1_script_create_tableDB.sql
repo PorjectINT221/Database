@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `SmartStock`.`products` (
   `prodPrice` DECIMAL(8,2) NOT NULL,
   `prodDescription` VARCHAR(300) NOT NULL,
   `prodDateManufacturer` DATE NOT NULL,
-  `prodWaranty` INT NOT NULL,
+  `prodWarranty` VARCHAR(20) NOT NULL,
   `image` VARCHAR(100) NOT NULL,
   `fkBrandCode` INT NOT NULL,
   PRIMARY KEY (`prodCode`),
