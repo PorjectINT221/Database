@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `SmartStock`.`products` (
   `prodCode` INT NOT NULL AUTO_INCREMENT,
   `prodName` VARCHAR(50) NOT NULL,
   `prodPrice` DECIMAL(8,2) NOT NULL,
-  `prodDescription` VARCHAR(300) NOT NULL,
+  `prodDescription` VARCHAR(600) NOT NULL,
   `prodDateManufacturer` DATE NOT NULL,
   `prodWarranty` VARCHAR(20) NOT NULL,
   `image` VARCHAR(100) NOT NULL,
