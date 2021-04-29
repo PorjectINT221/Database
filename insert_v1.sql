@@ -1,20 +1,12 @@
 use SmartWebStore;
---select * from colors;
---select * from brands;
---select * from products;
+-- select * from colors;
+-- select * from brands;
+-- select * from products;
  
 INSERT INTO brands (brandName)
-VALUES ('Apple');
-INSERT INTO brands (brandName)
-VALUES ('Xiaomi');
-INSERT INTO brands (brandName)
-VALUES ('Samsung');
-INSERT INTO brands (brandName)
-VALUES ('Oppo');
-INSERT INTO brands (brandName)
-VALUES ('Google');
-
-INSERT INTO products (prodName,prodPrice,prodDescription,prodDateManufacturer,prodWarranty ,image,fkBrandCode) 
+VALUES ('Apple'),('Xiaomi'),('Samsung'),('Oppo'),('Google');
+ 
+INSERT INTO products (prodName,prodPrice,prodDescription,prodDateManufacturer,prodWarranty ,prodImage,fkBrandCode) 
 			   VALUES ('Iphone 12',29900,'NETWORK : GSM / CDMA / HSPA / EVDO / LTE / 5G
 DISPLAY : 6.1Super Retina XDR OLED, HDR10, Dolby Vision, 625 nits (typ), 1200 nits (peak)
 OS      : iOS 14.1, upgradable to iOS 14.5
@@ -90,8 +82,8 @@ VALUES (1,1),(2,7),(3,8),(4,2),(5,1),(6,3),(7,4),(8,5);
 
  
 
---select * from products;
+-- select * from products;
 -- select * from brands,products,colors,producthascolors where  prodCode like 1; 
 
---select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode;
+-- select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode;
 
