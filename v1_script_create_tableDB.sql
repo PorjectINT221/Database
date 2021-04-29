@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `SmartWebStore`.`products` (
   `prodDescription` VARCHAR(600) NOT NULL,
   `prodDateManufacturer` DATE NOT NULL,
   `prodWarranty` VARCHAR(20) NOT NULL,
-  `image` VARCHAR(100) NOT NULL,
+  `prodImage` VARCHAR(100) NOT NULL,
   `fkBrandCode` INT NOT NULL,
   PRIMARY KEY (`prodCode`),
   INDEX `fk_BrandCode_idx` (`fkBrandCode` ASC) VISIBLE,
