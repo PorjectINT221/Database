@@ -1,7 +1,5 @@
 use SmartWebStore;
--- select * from colors;
--- select * from brands;
--- select * from products;
+ 
  
 INSERT INTO brands (brandName)
 VALUES ('Apple'),('Xiaomi'),('Samsung'),('Oppo'),('Google');
@@ -82,8 +80,6 @@ VALUES (1,1),(2,7),(3,8),(4,2),(5,1),(6,3),(7,4),(8,5);
 
  
 
--- select * from products;
--- select * from brands,products,colors,producthascolors where  prodCode like 1; 
-
+ 
 -- select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode;
 
