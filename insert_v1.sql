@@ -1,5 +1,5 @@
 use SmartWebStore;
- 
+
  
 INSERT INTO brands (brandName)
 VALUES ('Apple'),('Xiaomi'),('Samsung'),('Oppo'),('Google');
@@ -76,10 +76,3 @@ VALUES ('Green'),('Gold'),('Orange'),('Red'),('Gray'),('Blue'),('Purple'),('Blac
 
 INSERT INTO producthascolors (prodCode,colCode)
 VALUES (1,1),(2,7),(3,8),(4,2),(5,1),(6,3),(7,4),(8,5);
-
-
- 
-
- 
--- select * from   brands b,products pd,producthascolors ph,colors co where b.brandCode = pd.fkBrandCode  and pd.prodCode= ph.prodHasColorCode  and ph.colCode = co.colCode;
-
