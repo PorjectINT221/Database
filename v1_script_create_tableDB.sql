@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `SmartWebStore`.`products` (
   `fkBrandCode` INT NOT NULL,
   PRIMARY KEY (`prodCode`),
   INDEX `fk_BrandCode_idx` (`fkBrandCode` ASC) VISIBLE,
+  UNIQUE INDEX `prodName_UNIQUE` (`prodName` ASC) VISIBLE,
   CONSTRAINT `fkBrandCode`
     FOREIGN KEY (`fkBrandCode`)
     REFERENCES `SmartWebStore`.`brands` (`brandCode`)
