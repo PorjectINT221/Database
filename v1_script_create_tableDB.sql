@@ -5,6 +5,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema SmartWebStore
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `SmartWebStore` ;
@@ -24,7 +27,23 @@ CREATE TABLE IF NOT EXISTS `SmartWebStore`.`brands` (
   `brandCode` INT NOT NULL AUTO_INCREMENT,
   `brandName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`brandCode`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `SmartWebStore`.`colors`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SmartWebStore`.`colors` ;
+
+CREATE TABLE IF NOT EXISTS `SmartWebStore`.`colors` (
+  `colCode` INT NOT NULL AUTO_INCREMENT,
+  `colName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`colCode`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -42,26 +61,15 @@ CREATE TABLE IF NOT EXISTS `SmartWebStore`.`products` (
   `prodImage` VARCHAR(100) NOT NULL,
   `fkBrandCode` INT NOT NULL,
   PRIMARY KEY (`prodCode`),
-  INDEX `fk_BrandCode_idx` (`fkBrandCode` ASC) VISIBLE,
   UNIQUE INDEX `prodName_UNIQUE` (`prodName` ASC) VISIBLE,
+  INDEX `fk_BrandCode_idx` (`fkBrandCode` ASC) VISIBLE,
+  UNIQUE INDEX `prodImage_UNIQUE` (`prodImage` ASC) VISIBLE,
   CONSTRAINT `fkBrandCode`
     FOREIGN KEY (`fkBrandCode`)
-    REFERENCES `SmartWebStore`.`brands` (`brandCode`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SmartWebStore`.`colors`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `SmartWebStore`.`colors` ;
-
-CREATE TABLE IF NOT EXISTS `SmartWebStore`.`colors` (
-  `colCode` INT NOT NULL AUTO_INCREMENT,
-  `colName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`colCode`))
-ENGINE = InnoDB;
+    REFERENCES `SmartWebStore`.`brands` (`brandCode`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -73,20 +81,18 @@ CREATE TABLE IF NOT EXISTS `SmartWebStore`.`producthascolors` (
   `prodHasColorCode` INT NOT NULL AUTO_INCREMENT,
   `prodCode` INT NOT NULL,
   `colCode` INT NOT NULL,
+  PRIMARY KEY (`prodHasColorCode`),
   INDEX `fk_PRODUCTS_has_COLOR_COLOR1_idx` (`colCode` ASC) VISIBLE,
   INDEX `fk_PRODUCTS_has_COLOR_PRODUCTS1_idx` (`prodCode` ASC) VISIBLE,
-  PRIMARY KEY (`prodHasColorCode`),
-  CONSTRAINT `fk_PRODUCTS_has_COLOR_PRODUCTS1`
-    FOREIGN KEY (`prodCode`)
-    REFERENCES `SmartWebStore`.`products` (`prodCode`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUCTS_has_COLOR_COLOR1`
     FOREIGN KEY (`colCode`)
-    REFERENCES `SmartWebStore`.`colors` (`colCode`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `SmartWebStore`.`colors` (`colCode`),
+  CONSTRAINT `fk_PRODUCTS_has_COLOR_PRODUCTS1`
+    FOREIGN KEY (`prodCode`)
+    REFERENCES `SmartWebStore`.`products` (`prodCode`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
